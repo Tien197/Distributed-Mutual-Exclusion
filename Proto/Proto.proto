@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package Proto;
+
+option go_package = "github.com/Tien197/Distributed-Mutual-Exclusion/Proto";
+
+service MutualExclusionService {
+  // Sends a request to access the critical section.
+  rpc SendRequest(Request) returns (Reply) {}
+
+  // Receives a request from another node.
+  rpc ReceiveRequest(Request) returns (Reply) {}
+}
+
+// Request message containing the node ID and clock value.
+message Request {
+  int64 node_id = 1;
+  int64 clock = 2;
+}
+
+// Reply message containing the sender node ID.
+message Reply {
+  int64 node_id = 1;
+}
